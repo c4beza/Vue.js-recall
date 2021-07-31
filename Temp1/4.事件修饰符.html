@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./lib/vue.min.js"></script>
+<style>
+    .outerdiv{
+        padding: 40px;
+        background-color: black;
+    }
+    .innerdiv{
+        border: 40px;
+        background-color: brown;
+    }
+</style>
+<body>
+    <div id="app" class="outerdiv" @click="outerdivclick">
+        <div class="innerdiv" @click="innerdivclick">
+            <input type="button" v-bind:value="msg" class="btn" @click="btnclick">
+        </div>
+
+    </div>
+    
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'clickme'
+        },
+        methods:{
+            outerdivclick(){
+                console.log("outerdivclicked")
+            },
+            innerdivclick(){
+                console.log("innerdivclicked")
+            },
+            btnclick(){
+                console.log("btnclicked")
+            }
+        }
+    })
+</script>
+</html>

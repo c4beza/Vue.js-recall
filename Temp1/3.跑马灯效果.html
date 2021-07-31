@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./lib/vue.min.js"></script>
+<body>
+    <div id="app">
+        <p v-text="msg">dsaf</p>
+        <input type="button" :value="btn1" @click="start()">
+        <input type="button" :value="btn2" @click="end()">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data: {
+            msg : 'hello world',
+            btn1 : 'start',
+            btn2 : 'end',
+            intervalid : null
+        },
+        methods: {
+            start(){
+                if (this.intervalid != null) return; 
+                this.intervalid = setInterval(() => {
+                var text = this.msg
+                var part1 = text.substring(1,0)
+                var part2 = text.substring(1)
+                this.msg = part2 + part1
+                console.log(this.msg)
+            },400)
+        },
+        end(){
+            clearInterval(this.intervalid)
+            this.intervalid = null
+        }
+    }
+    })
+</script>
+</html>

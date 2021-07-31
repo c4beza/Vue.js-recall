@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./lib/vue.min.js"></script>
+
+<body>
+    <div id="app">
+        <label>
+            id:
+            <input type="text" name="" id="" v-model='id'>
+        </label>
+        <label>
+            name:
+            <input type="text" name="" id="" v-model='name'>
+        </label>
+        <input type="button" value="add" @click = 'add'>
+        <p v-for='(item,i) in user' :key='item.id'>
+            <input type="checkbox" name="" id="">{{item.id}}-----{{item.name}}----{{i}}</p>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id : '',
+            name : '',
+            user: [
+                { id: 1, name: 'haoran' },
+                { id: 2, name: 'jiaqi' },
+                { id: 3, name: 'jack' },
+                { id: 4, name: 'amber' }]
+        },
+        methods: {
+            add (){
+                var newUser = {id:this.id,name:this.name}
+                this.user.unshift(newUser)
+            }
+        }
+    })
+</script>
+
+</html>

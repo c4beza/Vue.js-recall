@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./lib/vue.min.js"></script>
+<body>
+    <div id="app">
+        <h1 :style="{'color':'red', 'font-weight':'bold'}">hello my name is weijiaqi amber, i m a good girl.</h1>
+        <h1 :style="divStyle1">hello my name is weijiaqi amber, i m a good girl.</h1>
+        <h1 :style="[divStyle1,divStyle2]">hello my name is weijiaqi amber, i m a good girl.</h1>
+    </div>
+    
+</body>
+<script>
+    var vm  = new Vue({
+        el: "#app",
+        data: {
+            divStyle1 : {'color':'red', 'font-size':'bold'},
+            divStyle2 : {'background-color':'yellow'}
+        }
+    })
+</script>
+</html>

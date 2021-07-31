@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./lib/vue.min.js"></script>
+<body>
+    <div id="app">
+        <p v-for = 'count in 10'>{{count}}</p>
+    </div>    
+</body>
+<script>
+    Vue.config.devtools = true
+    var vm = new Vue({
+        el : '#app',
+        data : {
+            user: {
+                id : 1,
+                name : 'haoran ju',
+                gender : 'male'
+            }
+        }
+    })
+</script>
+</html>

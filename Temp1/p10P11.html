@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p> {{ msg1 }}</p>
+        <input type="button" value="begin" @click = "begin">
+        <input type="button" value="stop" @click = "stop">
+
+    </div> 
+</body>
+<script src="./lib/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg1: 'abcdefghijklmnopqrstuvwxyz',
+            intervalID : null
+        },
+        methods: {
+            begin(){ 
+                clearInterval(this.intervalID);
+                //if(this.intervalID != null) return;
+                this.intervalID = setInterval(() => {
+                var first = this.msg1.substring(0,1);
+                var second = this.msg1.substring(1);
+                this.msg1 = second + first;
+            }, 100)
+                },
+            stop(){
+                clearInterval(this.intervalID);
+                this.intervalID = null;
+            }     
+                     
+
+    }
+    })
+</script>
+</html>
