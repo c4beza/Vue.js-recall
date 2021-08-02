@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./lib/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="./lib/bootstrap.css">
+
+<!-- <body>
+    <div id="app">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加品牌</h3>
+            </div>
+            <div class="panel-body form-inline">
+                <label>Id:
+                    <input type="text" class="form-control" v-model = 'id'>
+                </label>
+                <label>Name:
+                    <input type="text" class="form-control" v-model = 'name'>
+                </label>
+                <input type="button" value="submit" class="btn btn-primary" @click = 'add()'>
+
+            </div>
+        </div>
+
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in list" :key="item.Id">
+                    <td>{{ item.Id }}</td>
+                    <td v-text='item.Name'></td>
+                    <td>{{ item.Ctime }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id : '',
+            name : '',
+            list: [
+                { Id: 1, Name: 'Benz', Ctime: new Date() },
+                { Id: 2, Name: 'Honda', Ctime: new Date() },
+                { Id: 3, Name: 'Lexus', Ctime: new Date() }
+            ]
+
+        },
+        methods: {
+            add(){
+                 var newCar = {Id : this.id, Name : this.name, Ctime : new Date()}
+                 this.list.push(newCar)
+                 this.id = ''
+                 this.name = ''
+            },
+            end(){
+
+            }
+        }
+    });
+</script> -->
+
+<body>    
+<div class="panel panel-primary" id="app">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Axios测试</div>
+            <div class="panel-body">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" id="btn1" @click='pushtext($event)'>Go!</button>
+                </span>
+                
+            </div>   
+        <!-- Table -->
+        <table class="table table-bordered table-hover table-striped">
+            <thead> 
+                <tr>
+                    <th>ID</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for = 'item in arg'>
+                    <td >{{  item.id  }}</td>
+                    <td >{{ item.content }}</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<script>
+    // 设置一个参数接收api返回来的值
+    var text = '';
+    // Make a request for a user with a given ID
+    var getText = function(){
+    axios.get('https://api.ixiaowai.cn/ylapi/index.php/?code=js')
+        .then(function (response) {
+        // handle success，对返回来的string做切割
+        text = response.data.slice(34,-4);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+            })};
+    
+
+    var vm  = new Vue({
+        el: '#app',
+        data: {
+            num : '1',
+            arg : []
+        },   
+        methods: {
+        pushtext : function(e){
+            // 获取现有的数组长度
+            let t = this.arg.length;
+            // 获取api传来字符串
+            getText();
+            if (text != ''){  
+                // 如果text不为空的话，将获取来的文字push到页面上
+                this.arg.push({ id: t+1, content : text});
+            }else{
+                // 测试发现鼠标第一次点击不会成功，如果不成功则设置300毫秒延迟自动重新点击一次
+                setTimeout(() => {
+                    e.target.click();
+                }, 300);
+            }
+        }
+    }
+})
+</script>
+</body>
+</html>
