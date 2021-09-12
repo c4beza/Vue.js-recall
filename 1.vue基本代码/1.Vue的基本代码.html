@@ -8,18 +8,26 @@
 
 <script src="./lib/vue.min.js"></script>
 <body>
+
     <div id="app">
-        <p>
-            {{ msg }}
-        </p>
-    </div>
+        <h2>您的爱好是: {{hobbies}}</h2>
+       
+         <label v-for="item in originHobbies" :for="item">
+           <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}
+         </label>
+       </div>
+       
+
+       
 </body>
-<script>
-    var vm = new Vue({
-        el : '#app',
-        data : {
-            msg : 'hello world!'
-        }
+</html>       <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        isAgree: false, // 单选框
+        hobbies: [], // 多选框,
+        originHobbies: ['篮球', '足球', '乒乓球', '羽毛球', '台球', '高尔夫球']
+      }
     })
-</script>
-</html>
+  </script>
